@@ -1,0 +1,31 @@
+<!-- Add this as an additional Claims provider in your base_extension file.
+    See also here: https://docs.microsoft.com/en-us/azure/active-directory-b2c/active-directory-b2c-rest-api-step-custom
+ -->
+
+<ClaimsProvider>
+    <DisplayName>REST APIs</DisplayName>
+    <TechnicalProfiles>
+
+        <!-- Custom Restful service -->
+        <TechnicalProfile Id="Get-GroupMembership">
+            <DisplayName>Returns a list of AAD groups the user is part of</DisplayName>
+            <Protocol Name="Proprietary" Handler="Web.TPEngine.Providers.RestfulProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
+            <Metadata>
+                <Item Key="ServiceUrl">https://example.com/getGroupMembership/</Item>
+                <Item Key="AuthenticationType">Basic</Item>
+                <Item Key="SendClaimsIn">Body</Item>
+            </Metadata>
+            <CryptographicKeys>
+                <Key Id="BasicAuthenticationUsername" StorageReferenceId="B2C_1A_B2CRestClientId" />
+                <Key Id="BasicAuthenticationPassword" StorageReferenceId="B2C_1A_B2CRestClientSecret" />
+            </CryptographicKeys>
+            <InputClaims>
+                <InputClaim ClaimTypeReferenceId="objectId" PartnerClaimType="objectId" />
+            </InputClaims>
+            <OutputClaims>
+                <OutputClaim ClaimTypeReferenceId="aadgroups" PartnerClaimType="Groups" />
+            </OutputClaims>
+            <UseTechnicalProfileForSessionManagement ReferenceId="SM-Noop" />
+        </TechnicalProfile>
+    </TechnicalProfiles>
+</ClaimsProvider>

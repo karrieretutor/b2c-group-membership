@@ -1,0 +1,9 @@
+<!-- Add this step as the last one BEFORE "SendClaims" in your user journey 
+    See also here: https://docs.microsoft.com/en-us/azure/active-directory-b2c/active-directory-b2c-rest-api-step-custom
+-->
+
+<OrchestrationStep Order="7" Type="ClaimsExchange">
+    <ClaimsExchanges>
+        <ClaimsExchange Id="GetGroupMembership" TechnicalProfileReferenceId="Get-GroupMembership" />
+    </ClaimsExchanges>
+</OrchestrationStep>

@@ -1,0 +1,10 @@
+version: "3"
+services:
+  b2c_users:
+    build: .
+    environment:
+      B2C_CLIENT_ID: "xxxxxxx-xddjfj-1324394-fjfjg" # The Client ID of an AAD (not B2C) app registration that has the permission to read directory data
+      B2C_CLIENT_SECRET: "secretkey" # The Client Secret of the above AAD app registration
+      B2C_TENANT_DOMAIN: "yourb2ctenant.onmicrosoft.com" # The AAD B2C tenant domain, e.g. kttestcustomer.onmicrosoft.com
+    ports:
+      - "8080:8080"
